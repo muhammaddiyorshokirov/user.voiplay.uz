@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VOIPLAY — Hisobni o'chirish</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="background-glow"></div>
+  
+  <div class="container">
+    <header class="header">
+      <div class="logo">
+        <span class="logo-accent">VOI</span>PLAY
+      </div>
+    </header>
+
+    <main class="card-wrapper">
+      <div class="card" id="deleteCard">
+        <div class="card-header">
+          <div class="warning-icon-wrapper">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="warning-icon">
+              <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
+              <line x1="12" y1="9" x2="12" y2="13"/>
+              <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+          </div>
+          <h1>Hisobni o'chirish</h1>
+          <p class="subtitle">Hisobingizni o'chirishni tasdiqlang. Bu amalni ortga qaytarib bo'lmaydi.</p>
+        </div>
+
+        <div class="danger-box">
+          <h3>Diqqat qiling:</h3>
+          <ul>
+            <li>
+              <span class="bullet"></span>
+              <p>Hisobingizga tegishli barcha faol obunalar va hisob balansi butunlay bekor qilinadi.</p>
+            </li>
+            <li>
+              <span class="bullet"></span>
+              <p>Ko'rish tarixi (watch history), sevimlilar ro'yxati (watchlist) va saqlangan qurilmalar o'chiriladi.</p>
+            </li>
+            <li>
+              <span class="bullet"></span>
+              <p>Siz yozgan barcha sharhlar, bildirilgan fikrlar va yozishmalar tizimdan tozalab yuboriladi.</p>
+            </li>
+          </ul>
+        </div>
+
+        <form id="deleteForm" novalidate>
+          <div class="input-group">
+            <label for="email">Shaxsiy Email</label>
+            <div class="input-wrapper">
+              <input type="email" id="email" name="email" placeholder="example@voiplay.uz" required autocomplete="email">
+            </div>
+            <span class="error-msg" id="emailError"></span>
+          </div>
+
+          <div class="input-grid">
+            <div class="input-group">
+              <label for="password">Parol</label>
+              <div class="input-wrapper">
+                <input type="password" id="password" name="password" placeholder="••••••••" required autocomplete="new-password">
+              </div>
+              <span class="error-msg" id="passwordError"></span>
+            </div>
+
+            <div class="input-group">
+              <label for="confirmPassword">Parolni tasdiqlash</label>
+              <div class="input-wrapper">
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="••••••••" required autocomplete="new-password">
+              </div>
+              <span class="error-msg" id="confirmPasswordError"></span>
+            </div>
+          </div>
+
+          <div class="checkbox-list">
+            <label class="checkbox-container">
+              <input type="checkbox" id="agreeTerms" required>
+              <span class="checkbox-checkmark"></span>
+              <span class="checkbox-text">Hisobim o'chirilishi bilan barcha obunalarim va balanddagi mablag'larim kuyib ketishiga roziman.</span>
+            </label>
+
+            <label class="checkbox-container">
+              <input type="checkbox" id="agreeDelete" required>
+              <span class="checkbox-checkmark"></span>
+              <span class="checkbox-text">Ko'rish tarixi, profil sozlamalari va qurilmalar qayta tiklanmasligini tushunaman.</span>
+            </label>
+
+            <label class="checkbox-container">
+              <input type="checkbox" id="agreeUndone" required>
+              <span class="checkbox-checkmark"></span>
+              <span class="checkbox-text">O'z xohishim bilan hisobimni butunlay o'chirishga tasdiq beraman.</span>
+            </label>
+          </div>
+
+          <button type="submit" class="btn-danger" id="submitBtn">
+            <span class="btn-text">Hisobni Butunlay O'chirish</span>
+            <div class="spinner" id="btnSpinner"></div>
+          </button>
+        </form>
+      </div>
+
+      <!-- Success Screen -->
+      <div class="card success-card hide" id="successCard">
+        <div class="success-icon-wrapper">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="success-icon">
+            <path d="M20 6 9 17l-5-5"/>
+          </svg>
+        </div>
+        <h2>Hisobingiz o'chirildi</h2>
+        <p class="success-desc">Sizning VOIPLAY hisobingiz va unga bog'liq barcha shaxsiy ma'lumotlaringiz tizimdan muvaffaqiyatli va butunlay o'chirildi.</p>
+        <p class="success-footer">Biz bilan birga bo'lganingiz uchun rahmat.</p>
+        <a href="https://voiplay.uz" class="btn-primary">Bosh sahifaga qaytish</a>
+      </div>
+    </main>
+  </div>
+
+  <!-- Notification Modal -->
+  <div class="modal-overlay hide" id="modalOverlay">
+    <div class="modal">
+      <div class="modal-header-err">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="modal-err-icon">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="12" y1="8" x2="12" y2="12"/>
+          <line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+        <h3>Xatolik yuz berdi</h3>
+      </div>
+      <div class="modal-body">
+        <p id="modalErrorMsg">Email yoki parol noto'g'ri. Iltimos tekshirib qaytadan urinib ko'ring.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-secondary" id="closeModalBtn">Tushunarli</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
